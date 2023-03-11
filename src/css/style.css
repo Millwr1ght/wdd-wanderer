@@ -1,0 +1,25 @@
+:root {
+    --primary--color: #ffffff;
+    --secondary-color: #ffffff;
+    --tertiary-color: #ffffff;
+    --dark-grey: #d0d0d0;
+    
+    --font-base: 18px;
+    --small-font: 0.8em;
+    --large-font: 1.2em;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--font-base);
+    color: var(--dark-grey);
+}
+
+img {
+    max-width: 100%;
+}
