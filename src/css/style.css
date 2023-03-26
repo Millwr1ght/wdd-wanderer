@@ -53,6 +53,20 @@ canvas {
     border-bottom: 2px solid var(--primary-color);
 }
 
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.horiz-separator {
+    background: black;
+    opacity: .2;
+    border-radius: 50px;
+    height: 2px;
+    margin: 25px 10px 25px 0;
+    width: 100%;
+}
+
 .hidden {
     display: none;
 }
