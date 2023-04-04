@@ -9,4 +9,4 @@ And I've used it as a project idea for (almost) every new programming language I
 the WDD part refers to the web design and development class this project fulfills requirements for
 
 ## Want to try it out?
-
+GOTO [wanderer-crisp-d5c6aa.netlify.app](wanderer-crisp-d5c6aa.netlify.app)
