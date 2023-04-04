@@ -1,5 +1,5 @@
 import { draw } from "./Canvas.mjs";
-import Game from "./Game.mjs";
+import Game from "./wanderer/Game.mjs";
 import { loadHeaderFooter, loadNavbar, qs } from "./utils";
 
 loadHeaderFooter();
@@ -7,6 +7,9 @@ loadNavbar("#home");
 
 //load game
 qs("body").onload = draw("#canvas");
+const game = new Game();
 
-let game = new Game();
-game.init();
+window.onload = () => {
+    const gameWindow = qs("#canvas").getContext("2d");
+    game.run(gameWindow);
+};

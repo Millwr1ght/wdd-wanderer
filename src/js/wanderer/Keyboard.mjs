@@ -6,7 +6,7 @@ export default class Keyboard {
     _keys = {};
 
     //methods
-    listenForEvents = (keys) => {
+    listenForEvent(keys) {
         window.addEventListener('keydown', this._onKeyDown.bind(this));
         window.addEventListener('keyup', this._onKeyUp.bind(this));
 
