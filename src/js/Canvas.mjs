@@ -1,4 +1,4 @@
-import { qs } from "./utils.js"
+import { qs } from "./utils.mjs"
 
 export function draw(selector) {
     const canvas = qs(selector);

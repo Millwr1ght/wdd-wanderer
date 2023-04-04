@@ -1,6 +1,6 @@
 import { draw } from "./Canvas.mjs";
 import Game from "./wanderer/Game.mjs";
-import { loadHeaderFooter, loadNavbar, qs } from "./utils";
+import { loadHeaderFooter, loadNavbar, qs } from "./utils.mjs";
 
 loadHeaderFooter();
 loadNavbar("#home");

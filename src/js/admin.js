@@ -1,5 +1,5 @@
 //sth here
-import { loadHeaderFooter, loadNavbar } from "./utils";
+import { loadHeaderFooter, loadNavbar } from "./utils.mjs";
 
 loadHeaderFooter();
 loadNavbar();
