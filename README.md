@@ -6,4 +6,7 @@ In grade 10, I figured out how to use the programming capabilities of my TI-83 g
 
 And I've used it as a project idea for (almost) every new programming language I've worked with since.
 
-the WDD refers to the web design and development class this project is for
+the WDD part refers to the web design and development class this project fulfills requirements for
+
+## Want to try it out?
+
