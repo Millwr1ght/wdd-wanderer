@@ -41,7 +41,7 @@ export default class tileMap {
     //getters
     getTile(col, row){
         //from col,row coords, get array index
-        return this.tiles[row * tileMap.cols + col];
+        return this.tiles[row * this.cols + col];
     };
     getCol(x){
         //convert canvas x to tileMap col
@@ -72,7 +72,7 @@ export default class tileMap {
 
     //setter
     generateNewField(){
-        this.tiles.map(this._rollNewTile);
+        this.tiles = this.tiles.map(this._rollNewTile);
     }
     _rollNewTile(){
         let roll2d10 = Math.floor(Math.random() * 100); //roll 2 10-sided dice, get 0-99

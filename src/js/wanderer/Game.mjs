@@ -36,7 +36,7 @@ export default class Game {
         this.mapHandler = new tileMap(8, 6, 100);
         this.mapHandler.generateNewField()
 
-        this.player = new Player(this.mapHandler, 400, 300, this.Loader.getImage("player_large"));
+        this.player = new Player(this.mapHandler, 300, 200, this.Loader.getImage("player_large"));
     }
 
     tick(elapsed){
@@ -74,15 +74,21 @@ export default class Game {
         if (this.keyboard.isDown(this.keyboard.UP)){dy = -1;}
         else if (this.keyboard.isDown(this.keyboard.DOWN)){dy = 1;}
         else if (this.keyboard.isDown(this.keyboard.LEFT)){dx = -1;}
-        else if (this.keyboard.isDown(this.keyboard.RIGHT)){dx = 1;}
+        else if (this.keyboard.isDown(this.keyboard.RIGHT)){dx = 1;};
 
-        this.player.move(delta, dx, dy);
+        //move, if alerted, regenerate map
+        let mapAlert = this.player.move(delta, dx, dy);
+        if(mapAlert){
+            this.mapHandler.generateNewField();
+        };
     }
 
     draw(){
         //render playing field
         this._drawTiles();
 
+        //this.ctx.drawImage(this.tileAtlas, 100, 0, 100, 100, 0, 0, 100, 100)
+        
         //render player
         const player = this.Loader.getImage("player_large")
         this.ctx.drawImage(
@@ -95,25 +101,24 @@ export default class Game {
         for (let c = 0; c < this.mapHandler.cols; c++) {
             for (let r = 0; r < this.mapHandler.rows; r++) {
                 const tileToDraw = this.mapHandler.getTile(c, r);
-                if (tileToDraw !== 0) {
-                    const canvasX = c * this.mapHandler.tileSize;
-                    const canvasY = r * this.mapHandler.tileSize;
-                    const sourceCoords = this.mapHandler.getCoords(tileToDraw);
-                    
-                    this.ctx.drawImage(
-                        this.tileAtlas, //source img
-                        sourceCoords.col, //source x
-                        sourceCoords.row, //source y
-                        this.mapHandler.tileSize, //source width
-                        this.mapHandler.tileSize, //source height
-                        canvasX, //target x
-                        canvasY, //target y
-                        this.mapHandler.targetSize, //target width
-                        this.mapHandler.tileSize, //target height
-                    )
-                }
+                const canvasX = c * this.mapHandler.tileSize;
+                const canvasY = r * this.mapHandler.tileSize;
+                const sourceCoords = this.mapHandler.getCoords(tileToDraw, 4); // get coords from the atlas
+                const sourceX = sourceCoords.col * this.mapHandler.tileSize;
+                const sourceY = sourceCoords.row * this.mapHandler.tileSize;
+                //console.log(sourceCoords);
+                this.ctx.drawImage(
+                    this.tileAtlas, //source img
+                    sourceX,
+                    sourceY,
+                    this.mapHandler.tileSize, //source width
+                    this.mapHandler.tileSize, //source height
+                    canvasX, //target x
+                    canvasY, //target y
+                    this.mapHandler.targetSize, //target width
+                    this.mapHandler.targetSize //target height
+                )
             }
         }
     }
-
 }
