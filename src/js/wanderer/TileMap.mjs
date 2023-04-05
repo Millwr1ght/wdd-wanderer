@@ -105,8 +105,14 @@ export default class tileMap {
     //determine if tile can be passed through at canvas x,y
     isWallAtXY(x, y){
         let col = this.getCol(x);
-        let row = this.getRow(x);
+        let row = this.getRow(y);
 
+        //boulder and mountain are impassable
+        //3 and 7 on the tilemap
+        return this.isWallAtColRow(col, row);
+    }
+
+    isWallAtColRow(col, row){
         //boulder and mountain are impassable
         //3 and 7 on the tilemap
         let tile = this.getTile(col, row);

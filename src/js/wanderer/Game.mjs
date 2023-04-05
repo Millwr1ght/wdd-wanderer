@@ -31,11 +31,12 @@ export default class Game {
         this.keyboard = new Keyboard();
         this.keyboard.listenForEvent([this.keyboard.UP, this.keyboard.DOWN, this.keyboard.LEFT, this.keyboard.RIGHT]);
         
+        //create game objects
         this.tileAtlas = this.Loader.getImage("tiles_large");
         this.mapHandler = new tileMap(8, 6, 100);
+        this.mapHandler.generateNewField()
 
-        //create game objects
-        this.player = new Player(this.mapHandler, 300, 200, this.Loader.getImage("player_large"));
+        this.player = new Player(this.mapHandler, 400, 300, this.Loader.getImage("player_large"));
     }
 
     tick(elapsed){
@@ -67,14 +68,15 @@ export default class Game {
     update(delta){
         //logic stuff that changes each tick (or so)
 
+        // get input
         let dx = 0;
         let dy = 0;
-        if (this.keyboard.isDown(this.keyboard.UP)) {dy = -1;}
-        else if (this.keyboard.isDown(this.keyboard.DOWN)) {dy = 1;}
-        else if (this.keyboard.isDown(this.keyboard.LEFT)) {dx = -1;}
-        else if (this.keyboard.isDown(this.keyboard.RIGHT)) {dx = 1;}
-        
-        this.player.move(dx, dy);
+        if (this.keyboard.isDown(this.keyboard.UP)){dy = -1;}
+        else if (this.keyboard.isDown(this.keyboard.DOWN)){dy = 1;}
+        else if (this.keyboard.isDown(this.keyboard.LEFT)){dx = -1;}
+        else if (this.keyboard.isDown(this.keyboard.RIGHT)){dx = 1;}
+
+        this.player.move(delta, dx, dy);
     }
 
     draw(){
@@ -83,7 +85,9 @@ export default class Game {
 
         //render player
         const player = this.Loader.getImage("player_large")
-        this.ctx.drawImage(player, 0, 0, 100, 100, 0, 0, 100, 100)
+        this.ctx.drawImage(
+            player, 0, 0, this.player.width, this.player.height, 
+            this.player.x, this.player.y, 100, 100)
     }
    
     /* helper */
