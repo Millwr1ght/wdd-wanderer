@@ -1,15 +1,14 @@
-import { draw } from "./Canvas.mjs";
 import Game from "./wanderer/Game.mjs";
 import { loadHeaderFooter, loadNavbar, qs } from "./utils.mjs";
+import { draw } from "./Canvas.mjs";
 
 loadHeaderFooter();
 loadNavbar("#home");
 
 //load game
-qs("body").onload = draw("#canvas");
+//qs("body").onload = draw("#canvas");
 const game = new Game();
 
 window.onload = () => {
-    const gameWindow = qs("#canvas").getContext("2d");
-    game.run(gameWindow);
+    game.run("#canvas");
 };

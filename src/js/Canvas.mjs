@@ -1,4 +1,5 @@
 import { qs } from "./utils.mjs"
+import AssetLoader from "./wanderer/AssetLoader.mjs";
 
 export function draw(selector) {
     const canvas = qs(selector);
@@ -12,9 +13,22 @@ export function draw(selector) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         //draw stuff
-        
-        
-        
+        //colorGradient(ctx, canvas.width, canvas.height, 20, 20) //ooh mango
+        const load = new AssetLoader();
+
+        const loaded = [
+            load.loadImage("tiles_large", "/images/tilemap_400x300.png"),
+            load.loadImage("player", "/images/spritesheet_100x100.png")
+        ];
+        Promise.all(loaded).then(function(assets) {
+            const img = load.getImage("tiles_large")
+            const player = load.getImage("player")
+            ctx.drawImage(img, 0, 0, 400, 300, 0, 0, 400, 300)
+            ctx.drawImage(img, 0, 0, 400, 300, 400, 300, 400, 300)
+            ctx.drawImage(img, 0, 0, 400, 300, 0, 300, 400, 300)
+            ctx.drawImage(img, 0, 0, 400, 300, 400, 0, 400, 300)
+            ctx.drawImage(player, 0, 0, 100, 100, 0, 0, 100, 100)
+        })
     } else {
         //drawing is unsupported, thus
     }
