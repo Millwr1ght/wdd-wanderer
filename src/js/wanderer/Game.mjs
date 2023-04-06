@@ -2,7 +2,7 @@ import Keyboard from "./Keyboard.mjs";
 import AssetLoader from "./AssetLoader.mjs";
 import tileMap from "./TileMap.mjs";
 import Player from "./Player.mjs";
-import { qs } from "../utils.mjs";
+import { getLocalStorage, qs, setLocalStorage } from "../utils.mjs";
 
 export default class Game {
     PLAYER_MED = "spritesheet_50x50.png"
@@ -38,9 +38,19 @@ export default class Game {
         //create game objects
         this.tileAtlas = this.Loader.getImage("tiles_large");
         this.mapHandler = new tileMap(8, 6, 100);
-        this.player = new Player(this.mapHandler, 300, 200, this.Loader.getImage("player_large"));
+        
+        //check if there is a save to load
+        const saveData = this.loadSaveFile()
+        if (saveData) {
+            this.player = new Player(this.mapHandler, saveData.player.x, saveData.player.y, this.Loader.getImage("player_large"));
 
-        this.mapHandler.generateNewField(this.player.x, this.player.y)
+            this.mapHandler.tiles = saveData.tiles;
+        } else {
+            this.player = new Player(this.mapHandler, 300, 200, this.Loader.getImage("player_large"));
+
+            this.mapHandler.generateNewField(this.player.x, this.player.y);
+        }
+        
     }
 
     tick(elapsed){
@@ -84,6 +94,7 @@ export default class Game {
         let mapAlert = this.player.move(delta, dx, dy);
         if(mapAlert){
             this.mapHandler.generateNewField(this.player.x, this.player.y);
+            this.saveGame();
         };
     }
 
@@ -124,5 +135,28 @@ export default class Game {
                 )
             }
         }
+    }
+    
+    saveGame(){
+        const saveData = {
+            "tiles": this.mapHandler.tiles,
+            "player": {
+                "x": this.player.x,
+                "y": this.player.y
+            }
+        }
+        setLocalStorage("user-save", saveData);
+    }
+
+    loadSaveFile(){
+        const saveData = getLocalStorage("user-save");
+
+        if (saveData == null) {
+            //if no save data,
+            return false;
+        } else {
+            return saveData;
+        }
+        
     }
 }
