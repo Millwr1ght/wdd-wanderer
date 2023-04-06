@@ -1,0 +1,16 @@
+[
+    {
+        "id": 0,
+        "name": "test",
+        "message": "Testing, testing... Is thing on?",
+        "background": "white",
+        "color": "black"
+    },
+    {
+        "id": 1,
+        "name": "error-canvas",
+        "message": "It seems your browser doesn't support the CanvasAPI. :/",
+        "background": "white",
+        "color": "black"
+    }
+]
