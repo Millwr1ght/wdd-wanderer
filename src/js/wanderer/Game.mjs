@@ -5,6 +5,10 @@ import Player from "./Player.mjs";
 import { qs } from "../utils.mjs";
 
 export default class Game {
+    PLAYER_MED = "spritesheet_50x50.png"
+    PLAYER_LARGE = "spritesheet_100x100.png"
+    PLAYER_LARGE_DEBUG = "spritesheet_100x100_debug.png"
+
 
     //methods
     /* auxilliary */
@@ -34,9 +38,9 @@ export default class Game {
         //create game objects
         this.tileAtlas = this.Loader.getImage("tiles_large");
         this.mapHandler = new tileMap(8, 6, 100);
-        this.mapHandler.generateNewField()
-
         this.player = new Player(this.mapHandler, 300, 200, this.Loader.getImage("player_large"));
+
+        this.mapHandler.generateNewField(this.player.x, this.player.y)
     }
 
     tick(elapsed){
@@ -61,7 +65,7 @@ export default class Game {
         this.Loader = new AssetLoader();
         return [
             this.Loader.loadImage("tiles_large", "/images/tilemap_400x300.png"),
-            this.Loader.loadImage("player_large", "/images/spritesheet_100x100.png")
+            this.Loader.loadImage("player_large", "/images/"+this.PLAYER_LARGE)
         ]
     }
     
@@ -79,7 +83,7 @@ export default class Game {
         //move, if alerted, regenerate map
         let mapAlert = this.player.move(delta, dx, dy);
         if(mapAlert){
-            this.mapHandler.generateNewField();
+            this.mapHandler.generateNewField(this.player.x, this.player.y);
         };
     }
 

@@ -3,6 +3,10 @@ export default class Keyboard {
     RIGHT = 39;
     UP = 38;
     DOWN = 40;
+    W = 87;
+    A = 85;
+    S = 83;
+    D = 68;
     _keys = {};
 
     //methods

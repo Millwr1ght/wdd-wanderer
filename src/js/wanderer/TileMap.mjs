@@ -71,8 +71,17 @@ export default class tileMap {
     }
 
     //setter
-    generateNewField(){
+
+    setTile(col, row, tileKey){
+        this.tiles[row *this.cols + col] = tileKey
+    }
+    generateNewField(clearX, clearY){
         this.tiles = this.tiles.map(this._rollNewTile);
+
+        //clear player's position
+        let row = this.getRow(clearY);
+        let col = this.getCol(clearX)
+        this.setTile(col, row, 0)
     }
     _rollNewTile(){
         let roll2d10 = Math.floor(Math.random() * 100); //roll 2 10-sided dice, get 0-99
