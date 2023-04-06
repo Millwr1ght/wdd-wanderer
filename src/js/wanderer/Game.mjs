@@ -157,6 +157,5 @@ export default class Game {
         } else {
             return saveData;
         }
-        
     }
 }

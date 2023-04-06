@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
 :root {
     --primary--color: #287f9e;
     --secondary-color: #503b9d;
@@ -7,6 +9,8 @@
     --font-base: 18px;
     --small-font: 0.8em;
     --large-font: 1.2em;
+
+    --font-body: "Rubik", Helvetica, sans-serif;
 }
 
 * {
@@ -36,11 +40,14 @@ footer {
     padding: 1em;
 }
 
-canvas {
+#canvas {
     border: 1px solid black;
 }
 
 /* sections */
+.alert-section {
+}
+
 .arcade {
     display: flex;
     align-items: center;
