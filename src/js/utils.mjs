@@ -11,16 +11,20 @@ export function setLocalStorage(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
 }
 
-export async function getJSONData(path) {
-    const response = await fetch(path);
-    return response.json();
-}
-
 //get partial template
 async function getTemplate(path) {
     const response = await fetch(path);
     const template = response.text();
     return template;
+}
+
+// render a list 
+export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+    const htmlStrings = list.map(template);
+    if (clear) {
+        parentElement.innerHTML = "";
+    }
+    parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
 
 function renderTemplate(parent, template, callback, data) {

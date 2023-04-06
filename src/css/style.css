@@ -19,7 +19,7 @@
 
 body {
     max-width: 1080px;
-    margin: auto;
+    margin: 0;
     font-family: var(--font-body);
     font-size: var(--font-base);
     color: var(--dark-grey);
@@ -34,6 +34,11 @@ header {
     justify-content: space-between;
     padding: 0 10px;
 }
+.logo {
+}
+
+.nav-top .nav-top__links .nav-top__links a {
+}
 
 footer {
     font-size: var(--small-font);
@@ -46,13 +51,43 @@ footer {
 
 /* sections */
 .alert-section {
-}
-
-.arcade {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5em;
+}
+.alert-section > p {
+    margin: 0;
+}
+.alert-section span .arcade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+
+.articles {
+    width: 60%;
+    padding: 10px 5px 10px 10px;
+}
+.articles-title {
+}
+.wanderer-article {
+    border-radius: 5px;
+    flex-wrap: wrap;
+    min-width: 200px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.wa-header {
+}
+.wa-title {
+}
+.wa-date {
+    font-size: var(--small-font);
+}
+.wa-content {
+    margin-top: 15px;
 }
 
 /* special classes */

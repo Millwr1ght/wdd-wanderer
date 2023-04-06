@@ -1,4 +1,4 @@
-import { getJSONData, qs } from "./utils.mjs";
+import { qs } from "./utils.mjs";
 
 export default class Alert {
     constructor() {
