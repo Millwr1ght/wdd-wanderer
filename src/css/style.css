@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
 :root {
     --primary--color: #287f9e;
     --secondary-color: #503b9d;
@@ -7,6 +9,8 @@
     --font-base: 18px;
     --small-font: 0.8em;
     --large-font: 1.2em;
+
+    --font-body: "Rubik", Helvetica, sans-serif;
 }
 
 * {
@@ -15,7 +19,7 @@
 
 body {
     max-width: 1080px;
-    margin: auto;
+    margin: 0;
     font-family: var(--font-body);
     font-size: var(--font-base);
     color: var(--dark-grey);
@@ -30,22 +34,60 @@ header {
     justify-content: space-between;
     padding: 0 10px;
 }
+.logo {
+}
+
+.nav-top .nav-top__links .nav-top__links a {
+}
 
 footer {
     font-size: var(--small-font);
     padding: 1em;
 }
 
-canvas {
+#canvas {
     border: 1px solid black;
 }
 
 /* sections */
-.arcade {
+.alert-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0.5em;
+}
+.alert-section > p {
+    margin: 0;
+}
+.alert-section span .arcade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+}
+
+.articles {
+    width: 60%;
+    padding: 10px 5px 10px 10px;
+}
+.articles-title {
+}
+.wanderer-article {
+    border-radius: 5px;
+    flex-wrap: wrap;
+    min-width: 200px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.wa-header {
+}
+.wa-title {
+}
+.wa-date {
+    font-size: var(--small-font);
+}
+.wa-content {
+    margin-top: 15px;
 }
 
 /* special classes */

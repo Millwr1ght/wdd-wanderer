@@ -1,12 +1,20 @@
-import { draw } from "./Canvas.mjs";
-import Game from "./Game.mjs";
-import { loadHeaderFooter, loadNavbar, qs } from "./utils";
+import Game from "./wanderer/Game.mjs";
+import { loadHeaderFooter, loadNavbar } from "./utils.mjs";
+import { drawLogo } from "./Canvas.mjs";
+//import Alert from "./AlertHandler.mjs";
 
-loadHeaderFooter();
+loadHeaderFooter(drawLogo);
 loadNavbar("#home");
 
 //load game
-qs("body").onload = draw("#canvas");
+//qs("body").onload = draw("#canvas");
+const game = new Game();
 
-let game = new Game();
-game.init();
+window.onload = () => {
+    game.run("#canvas");
+};
+
+//let data = await getJSONData("/json/alerts.json");
+//console.log(data[0]);
+//const alert = new Alert();
+//alert.renderAlertByID(0);

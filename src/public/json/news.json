@@ -3,6 +3,12 @@
         "title": "v0.0.5 - Tile Mapping News",
         "date": "23 March 2023",
         "author": "Millwr1ght",
-        "content": "<ul><li>::marker \"Made a tilemap of game elements\"</li><li>::marker \"Started the game loop\"</li><li>::marker \"Added this page to the site!\"</li></ul>"
+        "content": "<ul><li>\"Made a tilemap of game elements\"</li><li>\"Started the game loop\"</li><li>\"Added this page to the site!\"</li></ul>"
+    },
+    {
+        "title": "v0.1 - My machine works! It really works!",
+        "date": "5 April 2023",
+        "author": "Millwr1ght",
+        "content": "<ul><li>\"All the basic functions of Wanderer work now! Movement, tile collisions, even autosave!\"</li><li>\"Never have to start over again\"</li><li>::marker \"Fixed some broken links, so now you can really access this page of the site!\"</li></ul>"
     }
 ]

@@ -18,13 +18,25 @@ async function getTemplate(path) {
     return template;
 }
 
-function renderTemplate(parent, template) {
+// render a list 
+export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
+    const htmlStrings = list.map(template);
+    if (clear) {
+        parentElement.innerHTML = "";
+    }
+    parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
+
+function renderTemplate(parent, template, callback, data) {
     parent.insertAdjacentHTML("afterbegin", template);
     //callback
+    if (callback) {
+        callback(data)
+    }
 }
 
 //load headers and footer
-export async function loadHeaderFooter() {
+export async function loadHeaderFooter(headerCallback, headerData) {
     //get data and locations
     const headerElement = qs("#main-header");
     const headerTemplate = await getTemplate("/partials/header.html");
@@ -32,7 +44,7 @@ export async function loadHeaderFooter() {
     const footerTemplate = await getTemplate("/partials/footer.html");
 
     //put data in location
-    renderTemplate(headerElement, headerTemplate);
+    renderTemplate(headerElement, headerTemplate, headerCallback, headerData);
     renderTemplate(footerElement, footerTemplate);
 }
 

@@ -1,4 +1,6 @@
-import { qs } from "./utils.js"
+import Alert from "./AlertHandler.mjs";
+import { qs } from "./utils.mjs"
+import AssetLoader from "./wanderer/AssetLoader.mjs";
 
 export function draw(selector) {
     const canvas = qs(selector);
@@ -12,13 +14,39 @@ export function draw(selector) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         //draw stuff
-        
-        
+        colorGradient(ctx, canvas.width, canvas.height, 20, 20) //ooh mango
         
     } else {
-        //drawing is unsupported, thus
+        //drawing is unsupported
+        throwError();
     }
 };
+
+export function drawLogo() {
+    const canvas = qs("#logo");
+
+    if(canvas.getContext) {
+        const ctx = canvas.getContext("2d");
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const load = new AssetLoader();
+
+        const loaded = [
+            load.loadImage("tiles_large", "/images/tilemap_400x300.png"),
+            load.loadImage("player", "/images/spritesheet_100x100.png")
+        ];
+        Promise.all(loaded).then(function(assets) {
+            const img = load.getImage("tiles_large");
+            const player = load.getImage("player");
+            ctx.drawImage(img, 0, 0, 100, 100, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(player, 100, 0, 100, 100, 0, 100, canvas.width, canvas.height);
+        })
+
+    } else {
+        //drawing is unsupported
+        throwError();
+    }
+}
 
 
 // drawing utilities
@@ -51,4 +79,9 @@ function colorGradient(ctx, ctx_width, ctx_height, section_width, section_height
           ctx.fillRect(j * section_width, i * section_height, section_width, section_height);
         }
     }
+}
+
+function throwError() {
+    const alert = new Alert();
+    alert.renderAlertByName("canvas-error");
 }
