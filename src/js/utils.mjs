@@ -36,7 +36,7 @@ function renderTemplate(parent, template, callback, data) {
 }
 
 //load headers and footer
-export async function loadHeaderFooter(headerCallback, headerData) {
+export async function loadHeaderFooter(headerCallback, headerData, footerCallback = footerLastModified, footerData = "#lastModified") {
     //get data and locations
     const headerElement = qs("#main-header");
     const headerTemplate = await getTemplate("/partials/header.html");
@@ -45,7 +45,7 @@ export async function loadHeaderFooter(headerCallback, headerData) {
 
     //put data in location
     renderTemplate(headerElement, headerTemplate, headerCallback, headerData);
-    renderTemplate(footerElement, footerTemplate);
+    renderTemplate(footerElement, footerTemplate, footerCallback, footerData);
 }
 
 //load navbar
@@ -66,3 +66,8 @@ export async function loadNavbar(activeSelector) {
         activeElement.classList.add("active");
     }
 }
+
+//it was this easy
+function footerLastModified(selector) {
+    qs(selector).innerHTML = ` | Last Modified: ${document.lastModified}`;
+};

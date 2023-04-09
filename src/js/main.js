@@ -2,8 +2,6 @@ import Game from "./wanderer/Game.mjs";
 import { loadHeaderFooter, loadNavbar } from "./utils.mjs";
 import { drawLogo } from "./Canvas.mjs";
 //import Alert from "./AlertHandler.mjs";
-import { Octokit } from "octokit";
-
 
 loadHeaderFooter(drawLogo);
 loadNavbar("#home");
@@ -20,8 +18,3 @@ window.onload = () => {
 //console.log(data[0]);
 //const alert = new Alert();
 //alert.renderAlertByID(0);
-
-
-//last updated
-const octokit = new Octokit({});
-await octokit.request("GET /octocat", {});
