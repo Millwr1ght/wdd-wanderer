@@ -1,3 +1,5 @@
+import ExternalServices from "./ExternalServices.mjs";
+
 export function qs(selector, parent = document) {
     return parent.querySelector(selector);
 }
@@ -36,7 +38,7 @@ function renderTemplate(parent, template, callback, data) {
 }
 
 //load headers and footer
-export async function loadHeaderFooter(headerCallback, headerData, footerCallback = footerLastModified, footerData = "#lastModified") {
+export async function loadHeaderFooter(headerCallback, headerData, footerCallback = getLastPush, footerData = "#lastModified") {
     //get data and locations
     const headerElement = qs("#main-header");
     const headerTemplate = await getTemplate("/partials/header.html");
@@ -68,6 +70,14 @@ export async function loadNavbar(activeSelector) {
 }
 
 //it was this easy
-function footerLastModified(selector) {
-    qs(selector).innerHTML = ` | Last Modified: ${document.lastModified}`;
+//narrator: it was not 
+async function getLastPush(selector) {
+    const services = new ExternalServices("github");
+    const data = await services.getData("repositories?q=repo:Millwr1ght/wdd-wanderer");
+    const date = new Date(data.items[0].pushed_at);
+    qs(selector).innerHTML = ` | Last Modified: ${date.toDateString()}`
+
+    //turns out this shows when the HTML was last built, which for most html documents, is when the page was last loaded.
+    //turns out what we wanted was when the GH repo was last pushed at.
+    //qs(selector).innerHTML = ` | Last Modified: ${document.lastModified}`;
 };
