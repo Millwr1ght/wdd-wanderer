@@ -1,14 +1,18 @@
+import { renderListWithTemplate } from "./utils.mjs";
+
 export default class NewsList {
     constructor(category, dataSource, listElement) {
-        this,dataSource = dataSource;
+        this.dataSource = dataSource;
         this.category = category;
         this.listElement = listElement;
     }
 
     async init() {
-        const list = await this.dataSource.getData(this.category);
+        const filePath = this.dataSource.buildLocalQuery(this.category);
+        const list = await this.dataSource.getData(filePath);
         this.renderList(list);
     }
+
     renderList(list) {
         renderListWithTemplate(updateCardTemplate, this.listElement, list);
     }

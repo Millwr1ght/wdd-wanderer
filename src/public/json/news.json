@@ -1,14 +1,23 @@
 [
     {
-        "title": "v0.0.5 - Tile Mapping News",
-        "date": "23 March 2023",
+        "title": "v0.1.1 - basically done, but still no CSS (or most anything else)",
+        "date": "11 April 2023",
         "author": "Millwr1ght",
-        "content": "<ul><li>\"Made a tilemap of game elements\"</li><li>\"Started the game loop\"</li><li>\"Added this page to the site!\"</li></ul>"
+        "content": "<ul><li>Added when the site was last updated to the footer</li><li>Fixed how the news and updates page renders</li><li>Fixed how APIs were being accessed/processed</li><li>Still don't know how the v0.0... system works, so imma keep making them up</li></ul>",
+        "tags": ["site-update"]
     },
     {
         "title": "v0.1 - My machine works! It really works!",
         "date": "5 April 2023",
         "author": "Millwr1ght",
-        "content": "<ul><li>\"All the basic functions of Wanderer work now! Movement, tile collisions, even autosave!\"</li><li>\"Never have to start over again\"</li><li>::marker \"Fixed some broken links, so now you can really access this page of the site!\"</li></ul>"
+        "content": "<ul><li>All the basic functions of Wanderer work now! Movement, tile collisions, even autosave!</li><li>Never have to start over again</li><li>Fixed some broken links, so now you can really access this page of the site!</li></ul>",
+        "tags": ["general-update", "tile-collisions", "save-game"]
+    },
+    {
+        "title": "v0.0.5 - Tile Mapping News",
+        "date": "23 March 2023",
+        "author": "Millwr1ght",
+        "content": "<ul><li>Made a tilemap of game elements</li><li>Started the game loop</li><li>Added this page to the site!</li></ul>",
+        "tags": ["general-update", "world-gen"]
     }
 ]

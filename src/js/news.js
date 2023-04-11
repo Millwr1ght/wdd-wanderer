@@ -6,7 +6,7 @@ import { loadHeaderFooter, loadNavbar, qs } from "./utils.mjs";
 loadHeaderFooter(drawLogo);
 loadNavbar("#news");
 
-const data = new ExternalServices("news");
+const data = new ExternalServices("local");
 const articleSection = qs(".articles");
 const news = new NewsList("news", data, articleSection);
 news.init();
